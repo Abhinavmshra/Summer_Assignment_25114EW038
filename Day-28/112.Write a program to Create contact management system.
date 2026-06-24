@@ -1,0 +1,150 @@
+import java.util.*;
+public class Q112
+{
+    public static void main() 
+    {
+        int max=100;
+        String cids[]=new String[max];
+        String n[]=new String[max];
+        String ph[]=new String[max];
+        String em[]=new String[max];
+        int count=0;
+        Scanner sc=new Scanner(System.in);
+        cids[0]="C001";
+        n[0]="abhinav mishra";
+        ph[0]="9999999999";
+        em[0]="abhinav@email.com";
+        count++;
+        cids[1]="C002";
+        n[1]="raj";
+        ph[1]="9191919191";
+        em[1]="raj@email.com";
+        count++;
+        while(true) 
+        {
+            System.out.println("\n--- CONTACT SYSTEM ---");
+            System.out.println("1. Add New Contact");
+            System.out.println("2. View All Contacts");
+            System.out.println("3. Search Contact");
+            System.out.println("4. Update Contact");
+            System.out.println("5. Delete Contact");
+            System.out.println("6. Exit");
+            System.out.print("Enter choice: ");
+            int choice=sc.nextInt();
+            sc.nextLine();
+            switch(choice)
+            {
+                case 1:
+                    if(count>=max)
+                    {
+                        System.out.println("Contact list is full!");
+                    }
+                    else
+                    {
+                        System.out.print("Enter Contact ID: = ");
+                        String idIn=sc.nextLine();
+                        System.out.print("Enter Name = ");
+                        String nIn=sc.nextLine();
+                        System.out.print("Enter Phone No = ");
+                        String phIn=sc.nextLine();
+                        System.out.print("Enter Email = ");
+                        String emIn=sc.nextLine();
+                        cids[count]=idIn;
+                        n[count]=nIn;
+                        ph[count]=phIn;
+                        em[count]=emIn;
+                        count++;
+                        System.out.println("Contact added successfully!");
+                    }
+                    break;
+                case 2:
+                    if(count==0) 
+                    {
+                        System.out.println("No contacts found");
+                    } 
+                    else 
+                    {
+                        for(int i=0;i<count;i++) 
+                        {
+                            System.out.println("ID: "+cids[i]+" | Name: "+n[i]+" | Phone: "+ph[i]+" | Email: "+em[i]);
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.print("Enter Contact ID to search = ");
+                    String sId=sc.nextLine();
+                    boolean f3=false;
+                    for(int i=0;i<count;i++) 
+                    {
+                        if(cids[i].equals(sId)) 
+                        {
+                            System.out.println("Found! Name: "+n[i]+", Phone: "+ph[i]+", Email: "+em[i]);
+                            f3=true;
+                            break;
+                        }
+                    }
+                    if(f3==false) 
+                    {
+                        System.out.println("Contact not found");
+                    }
+                    break;
+                case 4:
+                    System.out.print("Enter Contact ID to update = ");
+                    String uId=sc.nextLine();
+                    boolean f4=false;
+                    for(int i=0;i<count;i++) 
+                    {
+                        if(cids[i].equals(uId)) 
+                        {
+                            f4=true;
+                            System.out.print("Enter New Name: ");
+                            n[i]=sc.nextLine();
+                            System.out.print("Enter New Phone No: ");
+                            ph[i]=sc.nextLine();
+                            System.out.print("Enter New Email: ");
+                            em[i]=sc.nextLine();
+                            System.out.println("Contact updated successfully!");
+                            break;
+                        }
+                    }
+                    if(f4==false) 
+                    {
+                        System.out.println("Contact not found.");
+                    }
+                    break;
+                case 5:
+                    System.out.print("Enter Contact ID to delete: ");
+                    String dId=sc.nextLine();
+                    boolean f5=false;
+                    for(int i=0;i<count;i++) 
+                    {
+                        if(cids[i].equals(dId)) 
+                        {
+                            for(int j=i;j<count-1;j++)
+                            {
+                                cids[j]=cids[j+1];
+                                n[j]=n[j+1];
+                                ph[j]=ph[j+1];
+                                em[j]=em[j+1];
+                            }
+                            count--;
+                            System.out.println("Contact deleted successfully!");
+                            f5=true;
+                            break;
+                        }
+                    }
+                    if(f5==false) 
+                    {
+                        System.out.println("Contact not found.");
+                    }
+                    break;
+                case 6:
+                    System.out.println("Exiting program.");
+                    sc.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please choose 1 to 6.");
+            }
+        }
+    }
+}
